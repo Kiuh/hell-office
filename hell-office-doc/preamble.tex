@@ -1,0 +1,339 @@
+% =====================================================================================================================
+% Базовые настройки документа
+% =====================================================================================================================
+\documentclass[a4paper,14pt,oneside,final]{report}  % Класс документа
+\usepackage{extsizes}                               % Поддержка 14pt
+\RequirePackage{shellesc}                           % Выполнение shell-команд
+\ShellEscape{openout_any=a}                         % Разрешение записи в файлы
+\usepackage{lastpage}                               % Получение номера последней страницы
+
+% =====================================================================================================================
+% Шрифты и кодировки
+% =====================================================================================================================
+\usepackage[utf8]{inputenc}                                 % Кодировка UTF-8
+\usepackage[T2A]{fontenc}                                   % Кодировка кириллицы
+\usepackage{fontspec}                                       % Системные шрифты
+\usepackage{polyglossia}                                    % Локализация
+\setmainlanguage{russian}                                   % Основной язык
+\setotherlanguage{english}                                  % Дополнительный язык
+\setmainfont{Times New Roman}                               % Основной шрифт
+\newfontfamily\cyrillicfonttt{Courier New}[Ligatures=TeX]   % Моноширинный шрифт
+\usepackage{textcomp}                                       % Спецсимволы
+\newcommand{\No}{\textnumero}                               % Символ номера №
+
+% =====================================================================================================================
+% Настройки страницы
+% =====================================================================================================================
+\usepackage[left=3cm,top=2.0cm,right=1.5cm,bottom=2.7cm]{geometry}  % Поля
+\usepackage{lscape}                                                 % Альбомные страницы
+\frenchspacing                                                      % Правильные пробелы после точек
+\usepackage{hyphenat}                                               % Улучшенные переносы
+\def\hyph{-\penalty0\hskip0pt\relax}                                % Умный дефис
+
+% =====================================================================================================================
+% Математика и формулы
+% =====================================================================================================================
+\usepackage{amsmath}            % Основные математические инструменты
+\usepackage{amsfonts}           % Математические шрифты
+\usepackage{amssymb}            % Математические символы
+\usepackage{amsthm}             % Теоремы
+\usepackage{calc}               % Вычисления длин
+\usepackage{siunitx}            % Единицы измерения
+\sisetup{
+  binary-units = true,          % Двоичные единицы (КиБ, МиБ)
+  output-decimal-marker = {,},  % Десятичный разделитель
+  per-mode = symbol,            % Формат "в секунду" (м/с)
+  range-phrase = --,            % Диапазон с длинным тире
+}
+\DeclareSIUnit{\sample}{S}      % Пользовательская единица "S"
+\AtBeginDocument{               % Нумерация внутри разделов
+  \numberwithin{equation}{section}
+  \numberwithin{table}{section}
+  \numberwithin{figure}{section}
+  \numberwithin{listing}{section}
+}
+
+% =====================================================================================================================
+% Графика и таблицы
+% =====================================================================================================================
+\usepackage[final]{graphicx}                                            % Вставка изображений
+\DeclareGraphicsExtensions{.png,.jpg}                                   % Разрешенные форматы
+\usepackage{caption}                                                    % Подписи
+\usepackage{subcaption}                                                 % Подписи для подрисунков
+\usepackage{rotating}                                                   % Поворот объектов
+\DeclareRobustCommand{\povernut}[1]{\begin{sideways}{#1}\end{sideways}} % Поворот текста
+\usepackage{tabularx}                                                   % Гибкие таблицы
+\usepackage{multirow}                                                   % Объединение строк
+\usepackage{makecell}                                                   % Многострочные ячейки
+\usepackage{longtable}                                                  % Многостраничные таблицы
+\usepackage{array}                                                      % Дополнительные форматы колонок
+\usepackage{gensymb}                                                    % Символы единиц (°C)
+
+% =====================================================================================================================
+% Оглавление и разделы
+% =====================================================================================================================
+\usepackage{tocloft}                                                            % Настройка оглавления
+\setlength{\cftbeforetoctitleskip}{-1em}                                        % Отступ перед "Содержанием"
+\setlength{\cftaftertoctitleskip}{1em}                                          % Отступ после "Содержания"
+\setcounter{secnumdepth}{3}                                                     % Глубина нумерации (до subsubsection)
+
+% Стили разделов
+\makeatletter
+\renewcommand{\thesection}{\arabic{section}}                                    % Нумерация секций арабскими цифрами
+\renewcommand\section{                                                          % 
+  \clearpage\@startsection{section}{1}                                          %
+  {\fivecharsapprox}                                                            % Левый отступ
+  {-1em \@plus -1ex \@minus -.2ex}                                              % Отступ перед заголовком
+  {1em \@plus .2ex}                                                             % Отступ после заголовка
+  {\raggedright\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}}   % Стиль: верхний регистр
+  
+\renewcommand\subsection{                                                       %
+  \@startsection{subsection}{2}                                                 %
+  {\fivecharsapprox}                                                            %
+  {-1em \@plus -1ex \@minus -.2ex}                                              %
+  {1em \@plus .2ex}                                                             %
+  {\raggedright\hyphenpenalty=10000\normalfont\normalsize\bfseries}}            % Стиль подраздела
+
+\renewcommand\subsubsection{                                                    %
+  \@startsection{subsubsection}{3}                                              %
+  {\fivecharsapprox}                                                            %
+  {-1em \@plus -1ex \@minus -.2ex}                                              %
+  {1em \@plus .2ex}                                                             %
+  {\raggedright\hyphenpenalty=10000\normalfont\normalsize\bfseries}}            % Стиль подподраздела
+
+% Центрированные разделы (для введения/заключения)
+\newcommand\sectioncentered{                                                    %
+  \clearpage\@startsection{section}{1}                                          %
+  {\z@}                                                                         %
+  {-1em \@plus -1ex \@minus -.2ex}                                              %
+  {1em \@plus .2ex}                                                             %
+  {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}}
+\makeatother
+
+% =====================================================================================================================
+% Списки и перечисления
+% =====================================================================================================================
+\usepackage{enumitem}                           % Настройка списков
+\setlist{nolistsep}                             % Убираем пробелы между элементами
+\makeatletter
+\AddEnumerateCounter{\asbuk}{\@asbuk}{щ)}       % Кириллическая нумерация
+\makeatother
+
+% Форматы маркеров списков
+\renewcommand{\labelenumi}{\asbuk{enumi})}      % Уровень 1: а), б)
+\renewcommand{\labelenumii}{\arabic{enumii})}   % Уровень 2: 1), 2)
+
+% Отступы списков
+\setlist[itemize,0]{                            % Маркированный список
+  itemindent=\parindent + 2.2ex,                % Отступ элемента
+  leftmargin=0ex,                               % Левый отступ
+  label=--                                      % Маркер "-"
+}
+\setlist[enumerate,1]{                          % Нумерованный список (уровень 1)
+  itemindent=\parindent + 2.7ex,
+  leftmargin=0ex
+}
+\setlist[enumerate,2]{                          % Нумерованный список (уровень 2)
+  itemindent=\parindent + \parindent - 2.7ex
+}
+
+% =====================================================================================================================
+% Библиография
+% =====================================================================================================================
+\usepackage[square,numbers,sort&compress]{natbib}               % Стиль цитирования
+\setlength{\bibsep}{0em}                                        % Убираем пробелы между элементами
+\bibliographystyle{belarus-specific-utf8gost780u}               % Стиль ГОСТ
+
+% Переопределение окружения библиографии
+\makeatletter
+\renewenvironment{thebibliography}[1]{
+  \sectioncentered*{CПИСОК ИСПОЛЬЗУЕМЫХ ИСТОЧНИКОВ}             % Центрированный заголовок
+  \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}      %
+  \list{\@biblabel{\@arabic\c@enumiv}}{                         % Формат списка
+    \settowidth\labelwidth{\@biblabel{#1}}                      %
+    \setlength{\itemindent}{\dimexpr\labelwidth+\labelsep+1em}  % Отступ элемента
+    \leftmargin\z@                                              % Общий отступ
+    \@openbib@code
+    \usecounter{enumiv}                                         %
+    \let\p@enumiv\@empty
+    \renewcommand\theenumiv{\@arabic\c@enumiv}
+  }                                                             %
+  \sloppy                                                       % Разрешаем свободную верстку
+  \clubpenalty4000                                              % Запрет висячих строк
+  \widowpenalty4000                                             %
+  \sfcode`\.\@m
+}{
+  \def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}%
+  \endlist
+}
+\makeatother
+
+% =====================================================================================================================
+% Колонтитулы и нумерация
+% =====================================================================================================================
+\usepackage{fancyhdr}                               % Настройка колонтитулов
+\pagestyle{fancy}                                   % Стиль страницы
+\fancyhf{}                                          % Очистка настроек
+\fancyfoot[R]{\thepage}                             % Номер страницы справа
+\renewcommand{\footrulewidth}{0pt}                  % Убираем линию внизу
+\renewcommand{\headrulewidth}{0pt}                  % Убираем линию вверху
+\fancypagestyle{plain}{\fancyhf{}\rfoot{\thepage}}  % Стиль для пустых страниц
+
+% =====================================================================================================================
+% Настройки гиперссылок и перекрестных ссылок 
+% =====================================================================================================================
+\usepackage[final,hidelinks]{hyperref}              % 
+\addto\extrasrussian{                               %
+  \def\equationautorefname{формула}                 %
+  \def\figureautorefname{рисунок}                   %
+  \def\listingautorefname{листинг}                  %
+  \def\tableautorefname{таблица}                    %
+}
+
+% =====================================================================================================================
+% Локализация стандартных названий
+% =====================================================================================================================
+\addto\captionsrussian{
+  \renewcommand\contentsname{\centerline{\bfseries\large{\MakeUppercase{содержание}}}}
+  \renewcommand{\bibsection}{\sectioncentered*{CПИСОК ИСПОЛЬЗУЕМЫХ ИСТОЧНИКОВ}}
+  \renewcommand{\listingscaption}{Листинг}
+}                                                                               % <-- Закрывающая скобка для \addto
+
+% =====================================================================================================================
+% Настройка вида оглавлений
+% =====================================================================================================================
+\makeatletter
+\renewcommand{\l@section}{\@dottedtocline{1}{0.5em}{1.2em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{1.7em}{2.0em}}
+\renewcommand{\l@subsubsection}{\@dottedtocline{3}{3.7em}{2.5em}}   % Исправлен уровень на 3
+\makeatother
+
+% =====================================================================================================================
+% Специальные счетчики
+% =====================================================================================================================
+\usepackage{totcount}                                               % Подсчет общего числа элементов
+\regtotcounter{section}                                             % Всего разделов
+
+% Пользовательские счетчики
+\newcounter{totfigures}                                             % Всего рисунков
+\newcounter{tottables}                                              % Всего таблиц
+\newcounter{totreferences}                                          % Всего источников
+\newcounter{totequation}                                            % Всего формул
+
+% Команды для вывода итогов
+\providecommand\totfig{} 
+\providecommand\tottab{}
+\providecommand\totref{}
+\providecommand\toteq{}
+
+% Сохранение итоговых значений
+\makeatletter
+\AtEndDocument{                                                     %
+  \addtocounter{totfigures}{\value{figure}}                         %
+  \addtocounter{tottables}{\value{table}}                           %
+  \addtocounter{totequation}{\value{equation}}                      %
+  \immediate\write\@mainaux{                                        %
+    \string\gdef\string\totfig{\number\value{totfigures}}           %
+    \string\gdef\string\tottab{\number\value{tottables}}            %
+    \string\gdef\string\totref{\number\value{totreferences}}        %
+    \string\gdef\string\toteq{\number\value{totequation}}           %
+  }                                                                 %
+  \addcontentsline{toc}{section}{CПИСОК ИСПОЛЬЗУЕМЫХ ИСТОЧНИКОВ}    %
+}
+\makeatother
+
+% Сброс счетчиков при новом разделе
+\pretocmd{\section}{\addtocounter{totfigures}{\value{figure}}\setcounter{figure}{0}}{}{}
+\pretocmd{\section}{\addtocounter{tottables}{\value{table}}\setcounter{table}{0}}{}{}
+\pretocmd{\section}{\addtocounter{totequation}{\value{equation}}\setcounter{equation}{0}}{}{}
+
+% Подсчет источников
+\pretocmd{\bibitem}{\addtocounter{totreferences}{1}}{}{}
+
+% =====================================================================================================================
+% Пользовательские команды и окружения
+% =====================================================================================================================
+% Пояснения к формулам
+\usepackage{fp}                                                         % Вычисления с плавающей точкой
+\newlength{\lengthWordWhere}                                            % Переменная для ширины слова "где"
+\settowidth{\lengthWordWhere}{где}                                      % Замер ширины
+\newenvironment{explanation}{
+  \begin{itemize}[leftmargin=0cm, itemindent=\lengthWordWhere + \labelsep, labelsep=\labelsep]
+  \renewcommand\labelitemi{}                                            % Убираем маркеры
+}{\end{itemize}}
+
+% Альтернативное окружение для пояснений
+\newenvironment{explanationx}{
+  \noindent\tabularx{\textwidth}{@{}ll@{ --- } X }
+}{\endtabularx}
+
+% Игнорирование аргумента
+\newcommand{\ignore}[2]{\hspace{0in}#2}
+
+% Команда для приложений
+\newcommand{\intro}[3]{
+  \stepcounter{section}                                                 % Увеличиваем счетчик разделов
+  \sectioncentered*{ПРИЛОЖЕНИЕ \MakeUppercase{#1}}                      % Заголовок
+  \begin{center} 
+    \bf{(#2)}\\                                                         % Обозначение (например, "А")
+    \bf{#3}                                                             % Название
+  \end{center}
+  \markboth{\MakeUppercase{#1}}{}                                       % Колонтитулы
+  \addcontentsline{toc}{section}{Приложение \MakeUppercase{#1} (#2) #3} % Запись в оглавление
+}
+
+% =====================================================================================================================
+% Дополнительные настройки
+% =====================================================================================================================
+% Настройки подписей
+\usepackage{caption}
+\DeclareCaptionLabelFormat{stbfigure}{Рисунок \textit{#2}}          % Формат для рисунков
+\DeclareCaptionLabelFormat{stbtable}{Таблица \textit{#2}}           % Формат для таблиц
+\DeclareCaptionLabelFormat{stblisting}{Листинг \textit{#2}}         % Формат для листингов
+\DeclareCaptionLabelSeparator{stb}{~--~}                            % Разделитель " - "
+\captionsetup{
+  labelsep=stb,                                                     % Применяем разделитель
+  font={small}                                                      % Размер шрифта
+}
+\captionsetup[figure]{                                              % Настройки для рисунков
+  labelformat=stbfigure, 
+  justification=centering
+}
+\captionsetup[listing]{                                             % Настройки для листингов
+  labelformat=stblisting,
+  justification=centering
+}
+\captionsetup[table]{                                               % Настройки для таблиц
+  labelformat=stbtable,
+  justification=raggedright,                                        % Выравнивание по левому краю
+  singlelinecheck=false                                             % Для многострочных подписей
+}
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}                     % Нумерация подрисунков кириллицей
+
+% Микротипографика
+\usepackage{microtype}                                              % Улучшение читаемости текста
+
+% Настройка сносок
+\makeatletter 
+\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark)}}} % Стиль 1)
+\makeatother
+\usepackage[bottom]{footmisc}                                       % Сноски внизу страницы
+
+% Разное
+\usepackage{textcase}                                               % Верхний регистр
+\usepackage{perpage}                                                % Нумерация сносок
+\MakePerPage{footnote}                                              % Сноски на каждой странице
+\usepackage{etoolbox}                                               % Утилиты для патчей
+\usepackage{verbatim}                                               % Вставка кода
+\usepackage{xcolor}                                                 % Цвета
+\usepackage{minted}                                                 % Подсветка синтаксиса
+\usepackage[normalem]{ulem}                                         % Подчеркивания
+\DeclareRobustCommand{\x}[1]{\text{#1}}                             % Текст в математическом режиме
+\renewcommand{\UrlFont}{\small\rmfamily\tt}                         % Стиль URL
+\PassOptionsToPackage{hyphens}{url}                                 % Переносы в URL
+
+% Отступ первой строки
+\usepackage{indentfirst}                                            % Всегда отступ в первом абзаце
+\newlength{\fivecharsapprox}                                        % Переменная для 5 символов
+\setlength{\fivecharsapprox}{6ex}                                   % Эмпирическая ширина
+\setlength{\parindent}{\fivecharsapprox}                            % Установка отступа

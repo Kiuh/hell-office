@@ -1,7 +1,8 @@
+% !TEX root = hell-office.tex
 % =====================================================================================================================
 % Базовые настройки документа
 % =====================================================================================================================
-\documentclass[a4paper,14pt,oneside,final]{report}  % Класс документа
+\documentclass[a4paper,14pt,oneside]{report}  % Класс документа
 \usepackage{extsizes}                               % Поддержка 14pt
 \RequirePackage{shellesc}                           % Выполнение shell-команд
 \ShellEscape{openout_any=a}                         % Разрешение записи в файлы
@@ -19,7 +20,7 @@
 \setotherlanguage{english}                                  % Дополнительный язык
 
 \setmainfont{Times New Roman}                               % Основной шрифт
-\newfontfamily\cyrillicfonttt[Ligatures=TeX]{Times New Roman} % Моноширинный шрифт
+\newfontfamily\cyrillicfonttt[Ligatures=TeX]{Courier New}   % Моноширинный шрифт
 \usepackage{textcomp}                                       % Спецсимволы
 \newcommand{\No}{\textnumero}                               % Символ номера №
 
@@ -42,7 +43,6 @@
 \usepackage{calc}               % Вычисления длин
 \usepackage{siunitx}            % Единицы измерения
 \sisetup{
-  binary-units = true,          % Двоичные единицы (КиБ, МиБ)
   output-decimal-marker = {,},  % Десятичный разделитель
   per-mode = symbol,            % Формат "в секунду" (м/с)
   range-phrase = --,            % Диапазон с длинным тире

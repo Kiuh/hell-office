@@ -1,5 +1,6 @@
 # Hell Office
 
+
 Hell office - business simulator game. It's a graduation work.
 
 ## Design documentation

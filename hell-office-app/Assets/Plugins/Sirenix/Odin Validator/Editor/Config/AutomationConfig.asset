@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnPlayMode: 1
   OnPlayModeIfWarnings: 0
-  OnPlayModeIfErrors: 3
+  OnPlayModeIfErrors: 7
   OnPlayModeAlwaysCompleteValidationFully: 0
   OnPlayModeFlashScreen: 0
   OnPlayModeSetup:
     Profile: 0
     ProfileAsset: {fileID: 0}
-  OnBuild: 0
+  OnBuild: 1
   OnBuildIfWarnings: 0
   OnBuildIfErrors: 3
   OnBuildAlwaysCompleteValidationFully: 0

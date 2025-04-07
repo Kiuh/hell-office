@@ -1957,7 +1957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfb4a5bf21482b4b8a7e57f079c5491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Config: {fileID: 11400000, guid: 48a0fe130b90cd64081843fa771c12d2, type: 2}
+  levelsConfig: {fileID: 11400000, guid: 8b1a37534da73ac40862da182bbf9849, type: 2}
 --- !u!114 &1067622721
 MonoBehaviour:
   m_ObjectHideFlags: 0

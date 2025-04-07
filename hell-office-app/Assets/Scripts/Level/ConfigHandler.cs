@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Menu;
+using UnityEngine;
 
 namespace Level
 {
     [AddComponentMenu("Scripts/Level/Level.ConfigHandler")]
     public class ConfigHandler : MonoBehaviour
     {
-        public Config.LevelConfig Config;
+        [SerializeField]
+        private LevelsConfig levelsConfig;
+
+        public Config.LevelConfig Config => levelsConfig.LevelsInfo[levelsConfig.CurrentSelectedLevel].Config;
     }
 }

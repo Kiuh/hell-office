@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Level.Finances
@@ -19,7 +18,7 @@ namespace Level.Finances
         private void Update()
         {
             lerpCount = Mathf.Lerp(lerpCount, bufferCount, lerpSpeed * Time.unscaledDeltaTime);
-            countText.text = Convert.ToString(Mathf.RoundToInt(lerpCount));
+            countText.text = $"{Mathf.RoundToInt(lerpCount)} - souls have";
         }
 
         public void OnChanged(int money)

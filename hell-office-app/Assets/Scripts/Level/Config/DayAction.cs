@@ -165,7 +165,8 @@ namespace Level.Config
         public enum Cause
         {
             BossOverstress,
-            NegativeMoney
+            NegativeMoney,
+            NoTimeLeft
         }
 
         [ReadOnly]

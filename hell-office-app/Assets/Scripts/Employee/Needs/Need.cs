@@ -8,12 +8,12 @@ namespace Employee.Needs
 {
     public enum NeedType
     {
-        Work,
-        Piss,
-        Eat,
-        Meeting,
-        Leave,
-        Smoke
+        Work = 0,
+        Piss = 1,
+        Eat = 2,
+        Meeting = 3,
+        Sleep = 4,
+        Smoke = 5,
     }
 
     [Serializable]

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AnimatorsSwitcher;
+using Assets.Scripts.Level.Aims;
 using Common;
 using Employee.Needs;
 using Level.Config;
@@ -19,7 +20,7 @@ namespace Level
         public LoseGame.Cause Cause;
     }
 
-    public struct AllEmployeesAtHome
+    public struct AllEmployeesAtBadroom
     {
         public bool Value;
     }
@@ -45,13 +46,7 @@ namespace Level
         private AnimatorsSwitcherImpl animatorSwitcher;
 
         [SerializeField]
-        private DailyBill.Model dailyBill;
-
-        [SerializeField]
         private TransitionPanel.Model transitionPanel;
-
-        [SerializeField]
-        private Boss.Model boss;
 
         [SerializeField]
         private NeedProviderManager needProviderManager;
@@ -70,6 +65,9 @@ namespace Level
         private NavMeshSurfaceUpdater navMeshUpdater;
 
         [SerializeField]
+        private Aims aims;
+
+        [SerializeField]
         private AllChildrenNeedModifiersApplier meetingStartNeedOverride;
 
         [SerializeField]
@@ -80,6 +78,9 @@ namespace Level
 
         [SerializeField]
         private AllChildrenNeedModifiersApplier goToWorkNeedOverride;
+
+        [SerializeField]
+        private ConfigHandler configHandler;
 
         public event Action ActionEndNotify;
 
@@ -108,6 +109,10 @@ namespace Level
 
         public void Execute(DayStart dayStart)
         {
+            Result timeLockResult = globalTime.SetTimeScaleLock(this, 1f);
+            timeLockResult.LogErrorIfFailure(
+                "Cannot set time scale lock in DayStart."
+            );
             navMeshUpdater.UpdateNavMesh();
             needProviderManager.InitGameMode();
 
@@ -181,7 +186,6 @@ namespace Level
             shopController.SetShopRooms(meeting.ShopRooms);
             shopController.SetShopEmployees(meeting.ShopEmployees);
             animatorSwitcher.SetAnimatorStates(typeof(Meeting));
-            boss.ActivateNextTaskBunch();
         }
 
         public void CompleteMeeting()
@@ -263,7 +267,7 @@ namespace Level
                 {
                     () =>
                         DataProviderServiceLocator
-                            .FetchDataFromSingleton<AllEmployeesAtHome>()
+                            .FetchDataFromSingleton<AllEmployeesAtBadroom>()
                             .Value
                 },
                 new List<Action>()
@@ -282,27 +286,24 @@ namespace Level
 
         public void Execute(DayEnd dayEnd)
         {
-            if (financesModel.TryTakeMoney(dailyBill.ComputeCheck().Sum).Failure)
-            {
-                LoseGame loseGame = new(LoseGame.Cause.NegativeMoney);
-                Execute(loseGame);
-                return;
-            }
-
             animatorSwitcher.SetAnimatorStates(typeof(DayEnd));
         }
 
         // Called by button continue on daily bill panel.
         public void CompleteDayEnd()
         {
-            dayEnded.Invoke();
-
-            if (boss.AllTasksAreComplete())
+            aims.DaysRemaining -= 1;
+            if (financesModel.Money >= configHandler.Config.SoulsNeed)
             {
                 Execute(new WinGame());
                 return;
             }
-
+            else if (aims.DaysRemaining <= 0)
+            {
+                Execute(new LoseGame(LoseGame.Cause.NoTimeLeft));
+                return;
+            }
+            dayEnded.Invoke();
             ActionEndNotify?.Invoke();
         }
 

@@ -328,7 +328,7 @@ namespace Employee
             state = State.SatisfyingNeed;
 
             // TODO: Remove it when employee serialization will be implemented (#121)
-            if (currentlySatisfyingNeed.NeedType == NeedType.Leave)
+            if (currentlySatisfyingNeed.NeedType == NeedType.Sleep)
             {
                 placeInWaitingLine.Drop();
                 gameObject.SetActive(false);

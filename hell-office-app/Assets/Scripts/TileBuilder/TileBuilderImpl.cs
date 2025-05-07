@@ -151,7 +151,7 @@ namespace TileBuilder
         public Result Validate()
         {
             Stack<KeyValuePair<Vector2Int, TileUnionImpl>> pointsStack =
-                new(TileUnionDictionary.Where(x => x.Value.IsAllWithMark(RoomTileLabel.Elevator)));
+                new(TileUnionDictionary.Where(x => x.Value.IsAllWithMark(RoomTileLabel.Meeting)));
             List<KeyValuePair<Vector2Int, TileUnionImpl>> tilesToCheck = TileUnionDictionary
                 .Where(x =>
                     !x.Value.IsAllWithMark(RoomTileLabel.Outside)

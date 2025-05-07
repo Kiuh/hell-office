@@ -28,6 +28,8 @@ namespace Level.Finances
 
         private int moneyEarned = 0;
 
+        public int Money => money;
+
         private void Start()
         {
             moneyDataProvider = new DataProvider<Money>(

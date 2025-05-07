@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Common;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 
 namespace TileUnion.Tile
@@ -54,7 +55,10 @@ namespace TileUnion.Tile
 
             foreach (Renderer renderer in renderers)
             {
-                renderer.SetMaterials(new List<Material>());
+                if (!renderer.TryGetComponent(out TextMeshPro _))
+                {
+                    renderer.SetMaterials(new List<Material>());
+                }
             }
             materialsByState = new()
             {
@@ -104,7 +108,10 @@ namespace TileUnion.Tile
 
             foreach (Renderer renderer in renderers)
             {
-                renderer.sharedMaterial = materialsByState[state];
+                if (!renderer.TryGetComponent(out TextMeshPro _))
+                {
+                    renderer.sharedMaterial = materialsByState[state];
+                }
             }
         }
     }

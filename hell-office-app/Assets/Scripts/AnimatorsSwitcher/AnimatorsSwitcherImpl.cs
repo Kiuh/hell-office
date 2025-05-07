@@ -73,6 +73,7 @@ namespace AnimatorsSwitcher
 
         public void SetAnimatorStates(Type dayType)
         {
+            Debug.Log($"SetAnimator to {dayType}");
             InterfaceMatch interfaceMatch = animatorList.InterfaceMatcher.Find(x =>
                 x.InterfaceName == dayType.Name
             );

@@ -12,9 +12,10 @@
         // General
         FreeSpace = 501,
         Corridor = 502,
-        Elevator = 503,
         Meeting = 504,
         BossOffice = 505,
+
+        BadRoom = 506,
 
         // Specific
         WorkingPlace = 701,

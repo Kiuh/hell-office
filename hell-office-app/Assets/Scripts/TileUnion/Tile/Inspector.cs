@@ -90,28 +90,30 @@ namespace TileUnion.Tile
                 return;
             }
 
+            string base_name = "[Gen] Base";
             GameObject main;
-            if (transform.Find("Base") == null)
+            if (transform.Find(base_name) == null)
             {
-                main = new GameObject("Base");
+                main = new GameObject(base_name);
                 main.transform.parent = gameObject.transform;
                 main.transform.localPosition = Vector3.zero;
             }
             else
             {
-                main = transform.Find("Base").gameObject;
+                main = transform.Find(base_name).gameObject;
             }
 
+            string walls_name = "[Gen] Walls";
             GameObject wallsHandler;
-            if (main.transform.Find("Walls") == null)
+            if (main.transform.Find(walls_name) == null)
             {
-                wallsHandler = new GameObject("Walls");
+                wallsHandler = new GameObject(walls_name);
                 wallsHandler.transform.parent = main.transform;
                 wallsHandler.transform.localPosition = Vector3.zero;
             }
             else
             {
-                wallsHandler = main.transform.Find("Walls").gameObject;
+                wallsHandler = main.transform.Find(walls_name).gameObject;
             }
             wallsHandler.transform.DestroyChildrenImmediate();
 
@@ -144,7 +146,7 @@ namespace TileUnion.Tile
                         handler.Prefab.transform.Rotate(new(0, degrees, 0));
                         handler.Prefab.SetActive(false);
                         handler.Prefab.name =
-                            $"Wall - {handler.Type} - {wallCollection.Place} -| "
+                            $"[Gen] Wall - {handler.Type} - {wallCollection.Place} -| "
                             + handler.Prefab.name;
                     }
                     else
@@ -154,16 +156,17 @@ namespace TileUnion.Tile
                 }
             }
 
+            string corners_name = "[Gen] Corners";
             GameObject cornersHandler;
-            if (main.transform.Find("Corners") == null)
+            if (main.transform.Find(corners_name) == null)
             {
-                cornersHandler = new GameObject("Corners");
+                cornersHandler = new GameObject(corners_name);
                 cornersHandler.transform.parent = main.transform;
                 cornersHandler.transform.localPosition = Vector3.zero;
             }
             else
             {
-                cornersHandler = main.transform.Find("Corners").gameObject;
+                cornersHandler = main.transform.Find(corners_name).gameObject;
             }
             cornersHandler.transform.DestroyChildrenImmediate();
 
@@ -196,7 +199,7 @@ namespace TileUnion.Tile
                         handler.Prefab.transform.Rotate(new(0, degrees, 0));
                         handler.Prefab.SetActive(false);
                         handler.Prefab.name =
-                            $"Corner - {handler.Type} - {cornerCollection.Place} -| "
+                            $"[Gen] Corner - {handler.Type} - {cornerCollection.Place} -| "
                             + handler.Prefab.name;
                     }
                     else
@@ -206,16 +209,17 @@ namespace TileUnion.Tile
                 }
             }
 
+            String centers_name = "[Gen] Center";
             GameObject centerHandler;
-            if (main.transform.Find("Center") == null)
+            if (main.transform.Find(centers_name) == null)
             {
-                centerHandler = new GameObject("Center");
+                centerHandler = new GameObject(centers_name);
                 centerHandler.transform.parent = main.transform;
                 centerHandler.transform.localPosition = Vector3.zero;
             }
             else
             {
-                centerHandler = main.transform.Find("Center").gameObject;
+                centerHandler = main.transform.Find(centers_name).gameObject;
             }
             centerHandler.transform.DestroyChildrenImmediate();
 

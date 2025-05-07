@@ -159,6 +159,78 @@ Transform:
   - {fileID: 6332905530503436102}
   m_Father: {fileID: 4888070722099696689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5378703446160773777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4564108441322751241}
+  - component: {fileID: 8384689695842497370}
+  - component: {fileID: 3462170056025607575}
+  m_Layer: 0
+  m_Name: NeedProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4564108441322751241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378703446160773777}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.065, y: 0.6, z: -1.137}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8113440204758929537}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8384689695842497370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378703446160773777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30607ed3a039656498aa730f5870ffe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter:
+    Employees: []
+    FilterType: 0
+  bindToThisProviderOnFirstVisit: 0
+  NeedType: 5
+  taken:
+    m_PersistentCalls:
+      m_Calls: []
+  released:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3462170056025607575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378703446160773777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32101c4a35cc9e4489ebbebd25c71f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0.1
+  shift: {x: 0, y: 0, z: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  isWireframe: 0
 --- !u!1 &5417016765922824294
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +331,7 @@ Transform:
   m_Children:
   - {fileID: 2166591964815469235}
   - {fileID: 4888070722099696689}
+  - {fileID: 4564108441322751241}
   m_Father: {fileID: 1943638497325603040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8113440204758929543

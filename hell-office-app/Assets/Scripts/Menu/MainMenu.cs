@@ -1,15 +1,29 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Menu
 {
     public class MainMenu : MonoBehaviour
     {
         [SerializeField]
+        private Button exit;
+
+        [SerializeField]
         private LevelsConfig levelsConfig;
 
         [SerializeField]
         private string scene;
+
+        private void Awake()
+        {
+            exit.onClick.AddListener(Exit);
+        }
+
+        private void Exit()
+        {
+            Application.Quit();
+        }
 
         private void Start()
         {

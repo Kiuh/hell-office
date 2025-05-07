@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c39a70600ea274ebd8278a07991c85, type: 3}
   m_Name: TestLevelConfig
   m_EditorClassIdentifier: 
+  days_given: 10
+  souls_need: 1200
   days:
   - rid: 1908735195745353728
   - rid: 8023115963875983403
@@ -111,7 +113,7 @@ MonoBehaviour:
     - rid: 1908735195745353729
       type: {class: LoadLevel, ns: Level.Config, asm: Assembly-CSharp}
       data:
-        buildingConfig: {fileID: 11400000, guid: 911ce3b66f911cc4e9f87d3987e02c43, type: 2}
+        buildingConfig: {fileID: 11400000, guid: 745b244998be0ff4dbbc638091f339b9, type: 2}
     - rid: 2361025563211333632
       type: {class: FixedRoomConfig, ns: Level.Config, asm: Assembly-CSharp}
       data:

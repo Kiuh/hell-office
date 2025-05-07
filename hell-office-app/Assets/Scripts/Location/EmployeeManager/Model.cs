@@ -25,7 +25,7 @@ namespace Location.EmployeeManager
         private DataProvider<EmployeeAmount> employeeAmountDataProvider;
         private DataProvider<MaxStress> maxStressDataProvider;
         private DataProvider<AllEmployeesAtMeeting> allEmployeesAtMeetingDataProvider;
-        private DataProvider<AllEmployeesAtHome> allEmployeesAtHomeDataProvider;
+        private DataProvider<AllEmployeesAtBadroom> allEmployeesAtBadroomDataProvider;
 
         [SerializeField]
         private UnityEvent<EmployeeImpl> employeeFired;
@@ -83,13 +83,13 @@ namespace Location.EmployeeManager
                 },
                 DataProviderServiceLocator.ResolveType.Singleton
             );
-            allEmployeesAtHomeDataProvider = new DataProvider<AllEmployeesAtHome>(
+            allEmployeesAtBadroomDataProvider = new DataProvider<AllEmployeesAtBadroom>(
                 () =>
                 {
                     bool all_go_home = employees.All(employee =>
-                        employee.CurrentNeedType == NeedType.Leave
+                        employee.CurrentNeedType == NeedType.Sleep
                     );
-                    return new AllEmployeesAtHome { Value = all_go_home };
+                    return new AllEmployeesAtBadroom { Value = all_go_home };
                 },
                 DataProviderServiceLocator.ResolveType.Singleton
             );

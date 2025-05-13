@@ -50,6 +50,9 @@ namespace CameraController
         [RequiredIn(PrefabKind.PrefabInstanceAndNonPrefabInstance)]
         private TileBuilder.Controller builderController;
 
+        public bool IsFixedMode = false;
+        public Transform TargetPosition;
+
         private void Awake()
         {
             personFollow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
@@ -87,6 +90,13 @@ namespace CameraController
 
         private void Update()
         {
+            if (IsFixedMode)
+            {
+                ProcessMoving();
+                ProcessZoom();
+                return;
+            }
+
             if (!IsOnTileBuilder())
             {
                 return;
@@ -102,11 +112,15 @@ namespace CameraController
 
         private void ProcessMoving()
         {
-            Vector3 newPosition =
-                transform.position
-                + transform.TransformDirection(
-                    Time.unscaledDeltaTime * moveSpeed * new Vector3(moveVector.y, 0, moveVector.x)
-                );
+            Vector3 newPosition = transform.position;
+            if (!IsFixedMode)
+            {
+                newPosition += transform.TransformDirection(Time.unscaledDeltaTime * moveSpeed * new Vector3(moveVector.y, 0, moveVector.x));
+            }
+            else
+            {
+                newPosition = Vector3.Lerp(newPosition, TargetPosition.position, Time.unscaledDeltaTime * moveSpeed);
+            }
 
             if (fitInBounds)
             {
@@ -134,6 +148,9 @@ namespace CameraController
 
         private void ProcessZoom()
         {
+            if (IsFixedMode)
+                zoomValue = 1;
+
             personFollow.CameraSide = Mathf.Clamp(
                 personFollow.CameraSide + (zoomValue * Time.unscaledDeltaTime * zoomSpeed),
                 cameraSideRange.x,

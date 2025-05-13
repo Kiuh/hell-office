@@ -16,6 +16,7 @@ MonoBehaviour:
   - rid: 8023115963875983388
   - rid: 8023115963875983389
   - rid: 8023115963875983390
+  - rid: 8904422695530397696
   - rid: 8023115963875983391
   - rid: 8023115963875983392
   - rid: 8023115963875983393
@@ -115,3 +116,7 @@ MonoBehaviour:
       type: {class: FixedRoomConfig, ns: Level.Config, asm: Assembly-CSharp}
       data:
         room: {fileID: 739786844684371711, guid: 12f9d01fff44d1f469de9bec77ff7e01, type: 3}
+    - rid: 8904422695530397696
+      type: {class: Dialogue, ns: Level.Config, asm: Assembly-CSharp}
+      data:
+        dialogueConfig: {fileID: 11400000, guid: 32d13916b1412754ebdd7ccee1df40fb, type: 2}

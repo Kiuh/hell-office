@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Dialogue;
 using Employee.Personality;
 using Level.GlobalTime;
 using Sirenix.OdinInspector;
@@ -21,6 +22,19 @@ namespace Level.Config
         [SerializeField]
         private BuildingConfig buildingConfig;
         public BuildingConfig BuildingConfig => buildingConfig;
+
+        public void Execute(Executor executor)
+        {
+            executor.Execute(this);
+        }
+    }
+
+    [Serializable]
+    public class Dialogue : IDayAction
+    {
+        [SerializeField]
+        private DialogueConfig dialogueConfig;
+        public DialogueConfig DialogueConfig => dialogueConfig;
 
         public void Execute(Executor executor)
         {

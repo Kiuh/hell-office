@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AnimatorsSwitcher;
+using Assets.Scripts.Dialogue;
 using Assets.Scripts.Level.Aims;
 using Common;
 using Employee.Needs;
@@ -68,6 +69,9 @@ namespace Level
         private Aims aims;
 
         [SerializeField]
+        private DialogueExecutor dialogueExecutor;
+
+        [SerializeField]
         private AllChildrenNeedModifiersApplier meetingStartNeedOverride;
 
         [SerializeField]
@@ -131,6 +135,17 @@ namespace Level
         private IEnumerator DayStartRoutine(RealTimeSeconds time)
         {
             yield return new WaitForSecondsRealtime(time.Value);
+            ActionEndNotify?.Invoke();
+        }
+
+        public void Execute(Dialogue dialogue)
+        {
+            animatorSwitcher.SetAnimatorStates(typeof(Dialogue));
+            dialogueExecutor.ExecuteDialogue(dialogue.DialogueConfig);
+        }
+
+        public void CompleteDialogue()
+        {
             ActionEndNotify?.Invoke();
         }
 

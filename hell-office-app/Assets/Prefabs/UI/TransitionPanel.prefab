@@ -236,8 +236,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Day Starts
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3f6ed0db4043f324b8059bdd607c3b22, type: 2}
-  m_sharedMaterial: {fileID: 2198358107624950179, guid: 3f6ed0db4043f324b8059bdd607c3b22, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 21e639e2bdb2cf04f9d74a7a8d02eb7d, type: 2}
+  m_sharedMaterial: {fileID: 7880678533920729155, guid: 21e639e2bdb2cf04f9d74a7a8d02eb7d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

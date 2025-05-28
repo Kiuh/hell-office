@@ -55,7 +55,7 @@ namespace TileUnion.Tile
 
             foreach (Renderer renderer in renderers)
             {
-                if (!renderer.TryGetComponent(out TextMeshPro _))
+                if (!renderer.TryGetComponent(out TextMeshPro _) && !renderer.gameObject.name.EndsWith("_um"))
                 {
                     renderer.SetMaterials(new List<Material>());
                 }
@@ -108,7 +108,7 @@ namespace TileUnion.Tile
 
             foreach (Renderer renderer in renderers)
             {
-                if (!renderer.TryGetComponent(out TextMeshPro _))
+                if (!renderer.TryGetComponent(out TextMeshPro _) && !renderer.gameObject.name.EndsWith("_um"))
                 {
                     renderer.sharedMaterial = materialsByState[state];
                 }

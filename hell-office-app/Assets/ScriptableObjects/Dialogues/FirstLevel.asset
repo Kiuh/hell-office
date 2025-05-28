@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdd61a9bf4124243806b9d821998d58, type: 3}
   m_Name: FirstLevel
   m_EditorClassIdentifier: 
-  per_character_speed: 0.05
-  character_icon: {fileID: 21300000, guid: b43c9b43758c030479bdc84b1e47aeca, type: 3}
+  character_icon: {fileID: 21300000, guid: 549f494e0be6abd44b79fb8a9e729cc7, type: 3}
   dialogues:
-  - Hi, i am a manager at this floor.
-  - I suppose ypu fisrt time at this place.
-  - Let me explain ehat are you doing here.
+  - Welcome to the first floor of nine circles of hell.
+  - You will bw manager at this floor for quite a bit of time.
+  - Let me explain what you will doing here.
+  - '1 - Hire devils, change floor
+
+'
+  - 2 - Force them to work
+  - 3 - Gather souls
+  - 4 - If i come back souls would not be anough, you will remail as devil here
+  - Good luck.
